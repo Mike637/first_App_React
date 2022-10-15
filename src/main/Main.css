@@ -1,0 +1,112 @@
+.main
+{
+  flex:1 1 auto;
+  background-color:#C0C0C0;
+  }
+
+.main__container
+{
+  background-color:white;
+  padding:1% 0;
+}
+
+.main__rate-title,.main__calculator-title
+{
+  font-size:20px;
+  color:#606060;
+  margin-left:1%;
+}
+
+.main__rate-exchange
+{
+  margin:0 5%;
+  margin-top:1%;
+  display:flex;
+flex-direction: row;
+justify-content: space-between;
+  }
+
+.main__rate-container
+{
+background-color:#C0C0C0;
+width:30%;
+min-height:300px;
+display:flex;
+flex-direction: column;
+}
+
+.main__rate-container > p:first-child
+{
+  margin:5% 0 0 5%;
+align-self: flex-start;
+font-weight: bold;
+color:#181818;
+font-size:15px;
+}
+
+.main__rate-container > p
+{
+margin:3% 5% 0 0;
+align-self: flex-end;
+font-size:15px;
+font-weight: 500;
+color:#181818;
+}
+
+.main__calculator
+{
+
+}
+
+.main__calculator-container
+{
+  background-color:#C0C0C0;
+  margin:1% 5%;
+  padding:1% 0 5% 1%;
+}
+
+.main__calculator-title
+{
+  margin-top:2%;
+  margin-bottom:2%;
+}
+
+.main__calculator-container > p
+{
+  color:#181818;
+  font-size:20px;
+  font-weight: 500;
+  margin-top:1%;
+}
+
+.main__form
+{
+  margin:2% 0;
+}
+
+.main__form > input[type="text"],.main__form > input[type="submit"],.main__form > select
+{
+  height:30px;
+}
+.main__form > input[type="text"],.main__form > input[type="submit"]
+{
+  border:1px solid #606060;
+}
+
+
+.main__form > input[type="text"]
+{
+
+width:20%;
+}
+
+.main__form > input[type= "submit"]
+{
+  width:10%;
+  font-size:15px;
+}
+
+.main__form > input[type= "submit"]:hover
+{
+  cursor:pointer;
+}

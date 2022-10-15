@@ -1,0 +1,39 @@
+.footer
+{
+min-height:100px;
+width:100%;
+background-color:RGB(32,32,32);
+}
+
+.footer__container
+{
+  display:flex;
+  justify-content: space-between;
+  padding-right:20%;
+}
+.footer__reserved,.footer__map,.footer__about_us
+{
+  margin-top:1%;
+}
+
+.footer__reserved > p:first-child,.footer__map > p,.footer__about_us > p
+{
+  color:white;
+}
+.footer__reserved > p:first-child,.footer__map > p:first-child,.footer__about_us > p:first-child
+{
+  margin-top:0;
+}
+
+.footer__reserved > p:first-child
+{
+font-size:20px;
+font-weight:500;
+color:white;
+}
+
+.footer__reserved > p, .footer__map > p, .footer__about_us > p
+{
+  margin-top:5%;
+  font-size:15px;
+}
