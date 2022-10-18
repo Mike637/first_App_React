@@ -1,9 +1,59 @@
 import  "./Main.css";
 import React from 'react';
-
+/*
+data.Valute.USD.Name
+*/
 
 class Main extends React.Component
 {
+  constructor(props)
+  {
+    super(props)
+    this.state = {
+       date:"",
+       currencyRate:{},
+  }
+  this.currentList = ["USD","EURO","BYN"];
+
+}
+sepateDate = (string) =>
+{
+  const monthArray = ["января","февраля","марта","апреля","мая","июня","июля","августа","сентября","октября","ноября","декабря"];
+  let stringSplitArr = string.split("-");
+  let resultString = `${stringSplitArr[2].slice(0,2)}
+  ${monthArray[Number(stringSplitArr[1])-1]}
+   ${stringSplitArr[0]} года`;
+return resultString;
+}
+sepateRate = () =>
+{
+let array = {
+  EURO:150,
+  BYN:450,
+  LLL:150,
+  JSA:450,
+  USD:12
+}
+}
+
+componentDidMount()
+{
+  this.rateApi();
+}
+
+rateApi = () =>
+  {
+fetch('https://www.cbr-xml-daily.ru/daily_json.js').
+then(data => data.json())
+.then(data =>
+  {
+  this.setState({
+  date: this.sepateDate(data.Date),
+  currencyRate:data.Valute,
+})
+})
+this.sepateRate();
+  }
   render()
   {
 return (
@@ -11,7 +61,7 @@ return (
   <div className="main__container _container">
   <div className="main__rate">
     <div className="main__rate-title">
-      Курс валют на 30 ноября 2019 года
+      Курс валют на {this.state.date}
     </div>
     <div className="main__rate-exchange">
       <div className="main__rate-container main__rate-container_first">
@@ -50,7 +100,8 @@ return (
     </div>
   </div>
   </div>
-</main>
+
+  </main>
 )
   }
 }
