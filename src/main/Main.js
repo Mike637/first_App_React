@@ -1,8 +1,5 @@
 import  "./Main.css";
 import React from 'react';
-/*
-data.Valute.USD.Name
-*/
 
 class Main extends React.Component
 {
@@ -12,8 +9,9 @@ class Main extends React.Component
     this.state = {
        date:"",
        currencyRate:{},
+       result:0,
   }
-  this.currentList = ["USD","EURO","BYN"];
+  this.currentList = ["AMD","EUR","BYN"];
 
 }
 sepateDate = (string) =>
@@ -25,15 +23,14 @@ sepateDate = (string) =>
    ${stringSplitArr[0]} года`;
 return resultString;
 }
-sepateRate = () =>
+sepateRate = (array) =>
 {
-let array = {
-  EURO:150,
-  BYN:450,
-  LLL:150,
-  JSA:450,
-  USD:12
-}
+let res = {};
+this.currentList.forEach((element) => {
+
+res[element] = array[element];
+});
+return res;
 }
 
 componentDidMount()
@@ -47,15 +44,27 @@ fetch('https://www.cbr-xml-daily.ru/daily_json.js').
 then(data => data.json())
 .then(data =>
   {
+    console.log(data.Valute)
   this.setState({
   date: this.sepateDate(data.Date),
-  currencyRate:data.Valute,
+  currencyRate:this.sepateRate(data.Valute),
 })
+console.log(this.state.currencyRate)
 })
-this.sepateRate();
   }
+calc = (e) =>
+{
+e.preventDefault();
+let currentRateName = e.target.elements["rate_choise"].value;
+let currentRateValue = this.state.currencyRate[currentRateName].Value;
+let currentRateNominal = this.state.currencyRate[currentRateName].Nominal;
+let value = e.target.elements["text"].value;
+let result = currentRateValue/currentRateNominal*value;
+this.setState({result:result.toFixed(2)});
+}
   render()
   {
+let rateObject = this.state.currencyRate;
 return (
   <main className="main">
   <div className="main__container _container">
@@ -64,21 +73,15 @@ return (
       Курс валют на {this.state.date}
     </div>
     <div className="main__rate-exchange">
-      <div className="main__rate-container main__rate-container_first">
-        <p>USD</p>
-        <p>1500 Kr</p>
-        <p>1200 Kr</p>
-      </div>
-      <div className="main__rate-container main__rate-container_second">
-        <p>USD</p>
-        <p>1500 Kr</p>
-        <p>1200 Kr</p>
-      </div>
-      <div className="main__rate-container main__rate-container_third">
-        <p>USD</p>
-        <p>1500 Kr</p>
-        <p>1200 Kr</p>
-      </div>
+    {Object.keys(rateObject).map((element,index) =>
+      <div className= "main__rate-container main__rate-container{index}">
+        <p>{element}</p>
+<p>{rateObject[element].Value.toFixed(2)}</p>
+
+        <p>{rateObject[element].Nominal} {rateObject[element].Name}</p>
+      </div>)}
+
+
     </div>
   </div>
   <div className="main__calculator">
@@ -87,20 +90,20 @@ return (
     </div>
     <div className="main__calculator-container">
       <div className="main__form">
-        <input type="text"/>
+      <form onSubmit={this.calc}>
+        <input type="text" name="text"/>
         <select name="rate_choise" id="rate_choise">
-          <option value="usd">USD</option>
-          <option value="usd">USD</option>
-          <option value="usd">USD</option>
+        {Object.keys(rateObject).map(element =>
+          <option value = {element} key = {rateObject[element].ID}>{element}</option>)}
         </select>
-        <input type="submit" value="Calculate"/>
+        <input type="submit" name="calculate" defaltvalue="Calculate"/>
+        </form>
         </div>
         <p>Результат</p>
-        <p>0 EURO</p>
+        <p>{this.state.result} RUB</p>
     </div>
   </div>
   </div>
-
   </main>
 )
   }

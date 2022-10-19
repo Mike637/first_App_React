@@ -84,29 +84,29 @@ color:#181818;
   margin:2% 0;
 }
 
-.main__form > input[type="text"],.main__form > input[type="submit"],.main__form > select
+.main__form  input[type="text"],.main__form  input[type="submit"],.main__form  select
 {
   height:30px;
 }
-.main__form > input[type="text"],.main__form > input[type="submit"]
+.main__form  input[type="text"],.main__form  input[type="submit"]
 {
   border:1px solid #606060;
 }
 
 
-.main__form > input[type="text"]
+.main__form  input[type="text"]
 {
 
 width:20%;
 }
 
-.main__form > input[type= "submit"]
+.main__form  input[type= "submit"]
 {
   width:10%;
   font-size:15px;
 }
 
-.main__form > input[type= "submit"]:hover
+.main__form  input[type= "submit"]:hover
 {
   cursor:pointer;
 }
