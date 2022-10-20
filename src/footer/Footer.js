@@ -10,7 +10,7 @@ return (
   <footer className="footer">
   <div className="footer__container _container">
 <div className="footer__reserved">
-<p>2019 &copy; React Lite Level</p>
+<p>{this.props.year} &copy; React Lite Level</p>
 <p>All Rights Reserved</p>
 </div>
 <div className="footer__map">

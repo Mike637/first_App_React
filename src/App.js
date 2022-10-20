@@ -7,15 +7,15 @@ import Footer from './footer/Footer';
 
 class App extends React.Component
 {
-  
 
   render()
   {
-  return (
+    let date = new Date();
+    return (
 <div className="wrapper">
 <Header/>
 <Main/>
-<Footer/>
+<Footer year = {date.getFullYear()}/>
 </div>
   )
   }

@@ -12,7 +12,6 @@ class Main extends React.Component
        result:0,
   }
   this.currentList = ["AMD","EUR","BYN"];
-
 }
 sepateDate = (string) =>
 {
@@ -44,12 +43,11 @@ fetch('https://www.cbr-xml-daily.ru/daily_json.js').
 then(data => data.json())
 .then(data =>
   {
-    console.log(data.Valute)
-  this.setState({
+    this.setState({
   date: this.sepateDate(data.Date),
   currencyRate:this.sepateRate(data.Valute),
 })
-console.log(this.state.currencyRate)
+
 })
   }
 calc = (e) =>
