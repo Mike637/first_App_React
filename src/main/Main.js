@@ -14,6 +14,8 @@ class Main extends React.Component
   }
   this.currentList = ["USD","EUR","CZK"];
   }
+  /* get date of last information about
+exchange rate*/
 sepateDate = (string) =>
 {
   const monthArray = ["января","февраля","марта","апреля","мая","июня","июля","августа","сентября","октября","ноября","декабря"];
@@ -23,6 +25,10 @@ sepateDate = (string) =>
    ${stringSplitArr[0]} года`;
 return resultString;
 }
+/*  get object 'res'. Keys of the object - names of currencies.
+Values of the object - information  of currencies.
+ You can get all the necessary keys in property this.currentList.
+*/
 sepateRate = (array) =>
 {
 let res = {};
@@ -54,15 +60,14 @@ componentDidMount()
 {
   this.rateApi();
 }
-
+/*   get method API of Rate-information method */
 rateApi = () =>
   {
 fetch('https://www.cbr-xml-daily.ru/daily_json.js').
 then(data => data.json())
 .then(data =>
   {
-    console.log(data.Valute)
-    this.setState({
+  this.setState({
   date: this.sepateDate(data.Date),
   currencyRate:this.sepateRate(data.Valute),
 })
