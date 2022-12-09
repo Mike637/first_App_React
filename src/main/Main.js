@@ -29,8 +29,8 @@ exchange rate*/
       "ноября",
       "декабря",
     ];
-    let stringSplitArr = string.split("-");
-    let resultString = `${stringSplitArr[2].slice(0, 2)}
+    const stringSplitArr = string.split("-");
+    const resultString = `${stringSplitArr[2].slice(0, 2)}
   ${monthArray[Number(stringSplitArr[1]) - 1]}
    ${stringSplitArr[0]} года`;
     return resultString;
@@ -40,7 +40,7 @@ Values of the object - information  of currencies.
  You can get all the necessary keys in property this.currentList.
 */
   sepateRate = (array) => {
-    let res = {};
+    const res = {};
     try {
       this.currentList.forEach((element) => {
         res[element] = array[element];
@@ -79,11 +79,11 @@ Values of the object - information  of currencies.
   };
   calc = (e) => {
     e.preventDefault();
-    let currentRateName = e.target.elements["rate_choise"].value;
-    let currentRateValue = this.state.currencyRate[currentRateName].Value;
-    let currentRateNominal = this.state.currencyRate[currentRateName].Nominal;
-    let value = e.target.elements["text"].value;
-    let result = (currentRateValue / currentRateNominal) * value;
+    const currentRateName = e.target.elements["rate_choise"].value;
+    const currentRateValue = this.state.currencyRate[currentRateName].Value;
+    const currentRateNominal = this.state.currencyRate[currentRateName].Nominal;
+    const value = e.target.elements["text"].value;
+    const result = (currentRateValue / currentRateNominal) * value;
     this.setState({ result: result.toFixed(2), error: "" });
 
     if (isNaN(result) || result < 0) {
@@ -91,7 +91,7 @@ Values of the object - information  of currencies.
     }
   };
   render() {
-    let rateObject = this.state.currencyRate;
+  const rateObject = this.state.currencyRate;
     return (
       <main className="main">
         <div className="main__container _container">
